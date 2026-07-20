@@ -1,9 +1,92 @@
-:root {
-  --font-display:
-    Spline Sans, Inter, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji,
-    Segoe UI Symbol, Noto Color Emoji;
-  --font-mono:
-    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
-  --font-rounded: 'SF Pro Rounded', 'Hiragino Maru Gothic ProN', Meiryo, 'MS PGothic', sans-serif;
-  --font-serif: Georgia, 'Times New Roman', serif;
+@import 'tailwindcss';
+@import 'uniwind';
+
+@theme {
+  --radius: 0.75rem; /* 12px — 2026 optimal: soft, modern, user-friendly */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+}
+
+@layer theme {
+  :root {
+    @variant light {
+      /* Backgrounds */
+      --color-background: #ffffff;
+      --color-background-secondary: #f4f6f8;
+      --color-card: #ffffff;
+      --color-overlay: rgba(15, 23, 42, 0.4);
+
+      /* Text */
+      --color-foreground: #0f172a;
+      --color-foreground-secondary: #475569;
+      --color-muted: #94a3b8;
+
+      /* Borders */
+      --color-border: #e2e8f0;
+      --color-border-subtle: #f1f5f9;
+
+      /* Interactive */
+      --color-primary: #208aef;
+      --color-primary-hover: #1a7fd6;
+      --color-primary-foreground: #ffffff;
+
+      /* Status */
+      --color-danger: #ef4444;
+      --color-success: #22c55e;
+      --color-warning: #f59e0b;
+      --color-info: #3b82f6;
+
+      /* Task priority */
+      --color-priority-low: #22c55e;
+      --color-priority-medium: #eab308;
+      --color-priority-high: #f97316;
+      --color-priority-urgent: #ef4444;
+
+      /* Task states */
+      --color-completed: #64748b;
+      --color-accent: #208aef;
+    }
+
+    @variant dark {
+      /* Backgrounds */
+      --color-background: #0b0f17;
+      --color-background-secondary: #131a26;
+      --color-card: #1a2230;
+      --color-overlay: rgba(0, 0, 0, 0.6);
+
+      /* Text */
+      --color-foreground: #f8fafc;
+      --color-foreground-secondary: #94a3b8;
+      --color-muted: #64748b;
+
+      /* Borders */
+      --color-border: #2a3342;
+      --color-border-subtle: #1f2733;
+
+      /* Interactive */
+      --color-primary: #3b9eff;
+      --color-primary-hover: #5aacff;
+      --color-primary-foreground: #06121f;
+
+      /* Status */
+      --color-danger: #f87171;
+      --color-success: #4ade80;
+      --color-warning: #fbbf24;
+      --color-info: #60a5fa;
+
+      /* Task priority */
+      --color-priority-low: #4ade80;
+      --color-priority-medium: #facc15;
+      --color-priority-high: #fb923c;
+      --color-priority-urgent: #f87171;
+
+      /* Task states */
+      --color-completed: #64748b;
+      --color-accent: #3b9eff;
+    }
+  }
 }
