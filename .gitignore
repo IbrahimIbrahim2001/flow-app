@@ -31,7 +31,12 @@ yarn-error.*
 *.pem
 
 # local env files
-.env*.local
+.env*
+!.env.example
+
+# agent skills (installed globally, not committed)
+.agents/
+.env
 
 # typescript
 *.tsbuildinfo
