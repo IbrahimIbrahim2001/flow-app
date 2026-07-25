@@ -1,5 +1,5 @@
-import { useEffect } from "react";
 import { Stack } from "expo-router";
+import { useEffect } from "react";
 import { Uniwind } from "uniwind";
 import '../global.css';
 
@@ -8,5 +8,9 @@ export default function RootLayout() {
     Uniwind.setTheme("system"); // follows device light/dark
   }, []);
 
-  return <Stack />;
+  return (
+      <Stack>
+        <Stack.Screen name="(onboarding)" options={{ headerShown: false }} />
+      </Stack>
+  );
 }
