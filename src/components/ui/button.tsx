@@ -17,10 +17,14 @@ const styles: Record<Variant, { box: string; text: string }> = {
   outline: { box: 'bg-background border border-border', text: 'text-foreground' },
 };
 
-export function Button({ variant = 'primary', label, icon,className, ...props }: ButtonProps) {
+export function Button({ variant = 'primary', label, icon, className, disabled, ...props }: ButtonProps) {
   const s = styles[variant];
   return (
-    <Pressable className={`${base} ${s.box} ${className ?? ''}`} {...props}>
+    <Pressable
+      className={`${base} ${s.box} ${className ?? ''} ${disabled ? 'opacity-40' : ''}`}
+      disabled={disabled}
+      {...props}
+    >
       {icon}
       <Text className={`font-semibold ${s.text}`}>{label}</Text>
     </Pressable>

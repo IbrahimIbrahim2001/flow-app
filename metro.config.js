@@ -3,12 +3,18 @@ const { withUniwindConfig } = require('uniwind/metro');
 
 const config = getDefaultConfig(__dirname);
 
-// your metro modifications
-
 module.exports = withUniwindConfig(config, {
-    // relative path to your global.css file (from previous step)
     cssEntryFile: './src/global.css',
-    // (optional) path where we gonna auto-generate typings
-    // defaults to project's root
     dtsFile: './src/uniwind-types.d.ts'
 });
+
+module.exports.transformer = {
+  ...module.exports.transformer,
+  babelTransformerPath: require.resolve('react-native-svg-transformer'),
+};
+
+module.exports.resolver = {
+  ...module.exports.resolver,
+  assetExts: module.exports.resolver.assetExts.filter((ext) => ext !== 'svg'),
+  sourceExts: [...module.exports.resolver.sourceExts, 'svg'],
+};
