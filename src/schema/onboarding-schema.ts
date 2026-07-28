@@ -4,7 +4,7 @@ import * as z from "zod";
 export const onboardingSchema = z.object({
     name: z.string().min(3, { message: 'Name must be at least 3 characters' }),
     email: z
-        .string()
+        .string("Invalid email address")
         .refine((v) => validator.isEmail(v), { message: 'Invalid email address' }),
     password: z
         .string()

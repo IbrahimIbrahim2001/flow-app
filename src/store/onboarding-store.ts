@@ -10,13 +10,17 @@ const secureStorage = {
 };
 
 type OnboardingState = Partial<OnboardingSchemaType> & {
+  isNewUser: boolean;
   setData: (data: Partial<OnboardingSchemaType>) => void;
+  setIsNewUser: (isNew: boolean) => void;
 }
 
 export const useOnboardingStore = create<OnboardingState>()(
   persist(
     (set)=>({
+      isNewUser: true,
       setData: (data) => set(data),
+      setIsNewUser: (isNew) => set({ isNewUser: isNew }),
     }),
     {
       name: "onboarding-storage",
