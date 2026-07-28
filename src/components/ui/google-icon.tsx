@@ -1,4 +1,4 @@
-import Svg, { Path, Rect } from 'react-native-svg'
+import Svg, { Path, Rect } from 'react-native-svg';
 
 export function GoogleIcon({ size = 20 }: { size?: number }) {
   return (
@@ -21,5 +21,5 @@ export function GoogleIcon({ size = 20 }: { size?: number }) {
         fill="#EA4335"
       />
     </Svg>
-  )
+  );
 }

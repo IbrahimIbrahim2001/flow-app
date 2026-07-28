@@ -1,45 +1,70 @@
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { onboardingSchema } from '@/schema/onboarding-schema'
-import { useOnboardingStore } from '@/store/onboarding-store'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { Controller, useForm } from "react-hook-form"
-import { Text, View } from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context'
-import * as z from "zod"
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'expo-router';
+import { Controller, useForm } from 'react-hook-form';
+import { Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import type * as z from 'zod';
+import { register } from '@/api/register';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { onboardingSchema } from '@/schema/onboarding-schema';
+import { useOnboardingStore } from '@/store/onboarding-store';
 
-const nameSchema = onboardingSchema.pick({ name: true })
-type NameForm = z.infer<typeof nameSchema>
+const nameSchema = onboardingSchema.pick({ name: true });
+type NameForm = z.infer<typeof nameSchema>;
 
 export default function NameScreen() {
-    const setData = useOnboardingStore(s => s.setData)
-    const { control, handleSubmit } = useForm<NameForm>({
-        resolver: zodResolver(nameSchema),
-    })
+  const _router = useRouter();
+  const setData = useOnboardingStore((s) => s.setData);
+  const email = useOnboardingStore((s) => s.email);
+  const password = useOnboardingStore((s) => s.password);
+  const {
+    control,
+    handleSubmit,
+    setError,
+    formState: { errors, isValid, isSubmitting },
+  } = useForm<NameForm>({
+    resolver: zodResolver(nameSchema),
+  });
 
-    const onSubmit = (data: NameForm) => {
-        setData(data)
+  const onSubmit = async (data: NameForm) => {
+    try {
+      const result = await register(data.name, email ?? '', password ?? '');
+      if (result.success) {
+        setData(data);
+        // router.push('/(tabs)')
+      }
+    } catch {
+      setError('name', { type: 'manual', message: 'Something went wrong' });
     }
+  };
 
-    return (
-        <View className="flex-1 bg-background px-6">
-            <SafeAreaView className="flex-1">
-                <View className="gap-y-4">
-                    <Text className="text-xl">What's your name?</Text>
-                    <Controller
-                        control={control}
-                        name="name"
-                        render={({ field: { onChange, value } }) => (
-                            <Input
-                                placeholder="Full name"
-                                value={value}
-                                onChangeText={onChange}
-                            />
-                        )}
-                    />
-                    <Button label='Register' onPress={handleSubmit(onSubmit)} />
-                </View>
-            </SafeAreaView>
+  return (
+    <View className="flex-1 bg-background px-6">
+      <SafeAreaView className="flex-1">
+        <View className="gap-y-4">
+          <Text className="text-xl">What's your name?</Text>
+          <Controller
+            control={control}
+            name="name"
+            render={({ field: { onChange, value } }) => (
+              <Input
+                placeholder="Full name"
+                value={value}
+                onChangeText={onChange}
+              />
+            )}
+          />
+          {errors.name && (
+            <Text className="text-red-500 text-sm">{errors.name.message}</Text>
+          )}
+          <Button
+            label={isSubmitting ? '' : 'Register'}
+            disabled={!isValid}
+            onPress={handleSubmit(onSubmit)}
+          />
         </View>
-    )
+      </SafeAreaView>
+    </View>
+  );
 }
