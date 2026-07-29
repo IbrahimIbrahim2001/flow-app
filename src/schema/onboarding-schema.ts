@@ -9,6 +9,7 @@ export const onboardingSchema = z.object({
   password: z
     .string()
     .min(8, { message: 'Password must be at least 8 characters' }),
+  passwordError: z.string().optional(),
 });
 
 export type OnboardingSchemaType = z.infer<typeof onboardingSchema>;

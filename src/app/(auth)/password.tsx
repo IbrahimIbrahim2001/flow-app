@@ -12,6 +12,10 @@ import { Input } from '@/components/ui/input';
 import { onboardingSchema } from '@/schema/onboarding-schema';
 import { useOnboardingStore } from '@/store/onboarding-store';
 
+const USER_NOT_FOUND = 'user_not_found';
+const WRONG_PASSWORD = 'wrong_password';
+const INVALID_PASSWORD = 'invalid_password';
+
 const passwordSchema = onboardingSchema.pick({ password: true });
 type PasswordForm = z.infer<typeof passwordSchema>;
 
@@ -20,6 +24,7 @@ export default function PasswordScreen() {
   const setData = useOnboardingStore((s) => s.setData);
   const email = useOnboardingStore((s) => s.email);
   const [showPassword, setShowPassword] = useState(false);
+  const [serverMessage, setServerMessage] = useState('');
   const {
     control,
     handleSubmit,
@@ -31,14 +36,19 @@ export default function PasswordScreen() {
 
   const onSubmit = async (data: PasswordForm) => {
     try {
+      setServerMessage('');
       const result = await login(email ?? '', data.password);
       if (result.success) {
-        // setData(data)
-        console.log(result.data);
-        // router.push('/(tabs)/')
-      } else {
+        router.push('/(tabs)');
+      } else if (result.error === USER_NOT_FOUND) {
         setData(data);
         router.push('/(auth)/name');
+      } else if (result.error === WRONG_PASSWORD) {
+        setError('password', { type: 'manual', message: result.message });
+      } else if (result.error === INVALID_PASSWORD) {
+        setServerMessage(
+          'Password must be at least 8 characters with one uppercase letter, one lowercase letter, one number, and one symbol',
+        );
       }
     } catch {
       setError('password', { type: 'manual', message: 'Something went wrong' });
@@ -83,9 +93,12 @@ export default function PasswordScreen() {
             )}
           </View>
           {errors.password && (
-            <Text className="text-red-500 text-sm">
-              {errors.password.message}
-            </Text>
+            <View className="flex-row items-center gap-x-2">
+              <MaterialIcons name="error-outline" size={16} color="#dc2626" />
+              <Text className="text-red-500 text-sm flex-1">
+                {errors.password.message}
+              </Text>
+            </View>
           )}
           <Button
             label={isSubmitting ? '' : 'Next'}
@@ -93,6 +106,14 @@ export default function PasswordScreen() {
             icon={isSubmitting ? <ActivityIndicator color="#fff" /> : undefined}
             onPress={handleSubmit(onSubmit)}
           />
+          {serverMessage ? (
+            <View className="flex-row items-center gap-x-2 rounded-lg bg-blue-50 p-3">
+              <MaterialIcons name="info-outline" size={18} color="#6366f1" />
+              <Text className="text-gray-700 text-sm flex-1 leading-5">
+                {serverMessage}
+              </Text>
+            </View>
+          ) : null}
         </View>
       </SafeAreaView>
     </View>

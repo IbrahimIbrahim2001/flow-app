@@ -14,7 +14,7 @@ const nameSchema = onboardingSchema.pick({ name: true });
 type NameForm = z.infer<typeof nameSchema>;
 
 export default function NameScreen() {
-  const _router = useRouter();
+  const router = useRouter();
   const setData = useOnboardingStore((s) => s.setData);
   const email = useOnboardingStore((s) => s.email);
   const password = useOnboardingStore((s) => s.password);
@@ -29,10 +29,12 @@ export default function NameScreen() {
 
   const onSubmit = async (data: NameForm) => {
     try {
+      setData(data);
       const result = await register(data.name, email ?? '', password ?? '');
       if (result.success) {
-        setData(data);
-        // router.push('/(tabs)')
+        router.push('/(tabs)');
+      } else {
+        setError('name', { type: 'manual', message: result.message });
       }
     } catch {
       setError('name', { type: 'manual', message: 'Something went wrong' });
