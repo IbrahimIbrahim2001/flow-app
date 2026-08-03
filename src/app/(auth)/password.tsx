@@ -10,6 +10,7 @@ import { login } from '@/api/login';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { onboardingSchema } from '@/schema/onboarding-schema';
+import { useAuthStore } from '@/store/auth-store';
 import { useOnboardingStore } from '@/store/onboarding-store';
 
 const USER_NOT_FOUND = 'user_not_found';
@@ -23,6 +24,7 @@ export default function PasswordScreen() {
   const router = useRouter();
   const setData = useOnboardingStore((s) => s.setData);
   const email = useOnboardingStore((s) => s.email);
+  const signIn = useAuthStore((s) => s.signIn);
   const [showPassword, setShowPassword] = useState(false);
   const [serverMessage, setServerMessage] = useState('');
   const {
@@ -38,8 +40,9 @@ export default function PasswordScreen() {
     try {
       setServerMessage('');
       const result = await login(email ?? '', data.password);
-      if (result.success) {
-        router.push('/(tabs)');
+      if (result.success && result.data?.data) {
+        signIn(result.data.data);
+        router.replace('/(tabs)');
       } else if (result.error === USER_NOT_FOUND) {
         setData(data);
         router.push('/(auth)/name');

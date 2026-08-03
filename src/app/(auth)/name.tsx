@@ -8,6 +8,7 @@ import { register } from '@/api/register';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { onboardingSchema } from '@/schema/onboarding-schema';
+import { useAuthStore } from '@/store/auth-store';
 import { useOnboardingStore } from '@/store/onboarding-store';
 
 const nameSchema = onboardingSchema.pick({ name: true });
@@ -18,6 +19,7 @@ export default function NameScreen() {
   const setData = useOnboardingStore((s) => s.setData);
   const email = useOnboardingStore((s) => s.email);
   const password = useOnboardingStore((s) => s.password);
+  const signIn = useAuthStore((s) => s.signIn);
   const {
     control,
     handleSubmit,
@@ -31,8 +33,9 @@ export default function NameScreen() {
     try {
       setData(data);
       const result = await register(data.name, email ?? '', password ?? '');
-      if (result.success) {
-        router.push('/(tabs)');
+      if (result.success && result.data?.data) {
+        signIn(result.data.data);
+        router.replace('/(tabs)');
       } else {
         setError('name', { type: 'manual', message: result.message });
       }
