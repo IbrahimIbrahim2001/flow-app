@@ -11,7 +11,11 @@ type RefreshResponse = {
 
 export const refreshTokens = async (
   refreshToken: string,
-): Promise<{ success: boolean; message: string; data: RefreshResponse['data'] | null }> => {
+): Promise<{
+  success: boolean;
+  message: string;
+  data: RefreshResponse['data'] | null;
+}> => {
   try {
     const response = await fetch(`${API_URL}/auth/refresh`, {
       method: 'POST',
