@@ -20,6 +20,9 @@ importers:
       '@shopify/flash-list':
         specifier: ^2.3.2
         version: 2.3.2(@babel/runtime@7.29.7)(react-native@0.86.0(@babel/core@7.29.7)(@react-native/metro-config@0.86.0(@babel/core@7.29.7))(@types/react@19.2.17)(react@19.2.3))(react@19.2.3)
+      '@tabler/icons-react-native':
+        specifier: ^3.46.0
+        version: 3.46.0(react-native-svg@15.15.4(react-native@0.86.0(@babel/core@7.29.7)(@react-native/metro-config@0.86.0(@babel/core@7.29.7))(@types/react@19.2.17)(react@19.2.3))(react@19.2.3))(react@19.2.3)
       '@tanstack/react-query':
         specifier: ^5.101.2
         version: 5.101.2(react@19.2.3)
@@ -1353,6 +1356,15 @@ packages:
     engines: {node: '>=14'}
     peerDependencies:
       '@svgr/core': '*'
+
+  '@tabler/icons-react-native@3.46.0':
+    resolution: {integrity: sha512-BxeQO5RHX4P3dWXBp+DQD8k50Ka202m11uLKz9dwEgMA9yK5melzhtN+Hw8AFy3Y8etpAu1LMeHX6PxsDSmQ9w==}
+    peerDependencies:
+      react: '>= 16.5.1'
+      react-native-svg: '>= 13.0.0'
+
+  '@tabler/icons@3.46.0':
+    resolution: {integrity: sha512-f2RYFl3fzPwj5WO82x6en0dmkjefxEfOm16D1ByM6cj/McNiwOkL4VaPUoP9VVIrXAD9WnTSVFr70px703b//A==}
 
   '@tailwindcss/node@4.3.0':
     resolution: {integrity: sha512-aFb4gUhFOgdh9AXo4IzBEOzBkkAxm9VigwDJnMIYv3lcfXCJVesNfbEaBl4BNgVRyid92AmdviqwBUBRKSeY3g==}
@@ -5266,6 +5278,14 @@ snapshots:
       svgo: 3.3.4
     transitivePeerDependencies:
       - typescript
+
+  '@tabler/icons-react-native@3.46.0(react-native-svg@15.15.4(react-native@0.86.0(@babel/core@7.29.7)(@react-native/metro-config@0.86.0(@babel/core@7.29.7))(@types/react@19.2.17)(react@19.2.3))(react@19.2.3))(react@19.2.3)':
+    dependencies:
+      '@tabler/icons': 3.46.0
+      react: 19.2.3
+      react-native-svg: 15.15.4(react-native@0.86.0(@babel/core@7.29.7)(@react-native/metro-config@0.86.0(@babel/core@7.29.7))(@types/react@19.2.17)(react@19.2.3))(react@19.2.3)
+
+  '@tabler/icons@3.46.0': {}
 
   '@tailwindcss/node@4.3.0':
     dependencies:
