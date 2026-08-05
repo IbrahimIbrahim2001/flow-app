@@ -12,21 +12,26 @@ export default function TabsLayout() {
       backgroundColor={backgroundColor}
       labelVisibilityMode="unlabeled"
       iconColor={{ default: '#94a3b8', selected: primary }}
-      disableIndicator
-      labelStyle={{ fontSize: 12, fontWeight: '600' }}
+      indicatorColor="transparent"
     >
       <NativeTabs.Trigger name="index">
-        <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
-        <NativeTabs.Trigger.Icon sf="checklist.checked" md="check_box" />
+        <NativeTabs.Trigger.Label>Tasks</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Icon
+          src={require('@/assets/icons/checkbox.png')}
+          renderingMode="template"
+        />
       </NativeTabs.Trigger>
-      <NativeTabs.Trigger name="calender">
-        <NativeTabs.Trigger.Label>Calender</NativeTabs.Trigger.Label>
-        <NativeTabs.Trigger.Icon sf="checklist.checked" md="calendar_month" />
+      <NativeTabs.Trigger name="calendar">
+        <NativeTabs.Trigger.Label>Calendar</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Icon
+          src={require('@/assets/icons/calendar.png')}
+          renderingMode="template"
+        />
       </NativeTabs.Trigger>
       <NativeTabs.Trigger name="settings">
         <NativeTabs.Trigger.Label>Settings</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Icon
-          src={require('@/assets/icons/settings-2.png')}
+          src={require('@/assets/icons/settings.png')}
           renderingMode="template"
         />
       </NativeTabs.Trigger>

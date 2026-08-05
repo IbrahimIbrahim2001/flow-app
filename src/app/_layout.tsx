@@ -37,9 +37,10 @@ export default function RootLayout() {
             name="(tabs)"
             options={{
               headerShown: false,
-              contentStyle: { backgroundColor},
+              contentStyle: { backgroundColor },
+              headerStyle: { backgroundColor },
             }}
-          />
+          ></Stack.Screen>
         </Stack.Protected>
         <Stack.Protected guard={!isAuthenticated}>
           <Stack.Screen name="(onboarding)" options={{ headerShown: false }} />
