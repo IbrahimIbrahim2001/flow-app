@@ -1,10 +1,9 @@
 import { Stack } from 'expo-router';
-import { useColorScheme } from 'react-native';
+import { useTheme } from '@/hooks/use-theme';
 
 export default function SettingsLayout() {
-  const theme = useColorScheme();
-  const isDark = theme === 'dark';
-  const backgroundColor = isDark ? '#0b0f17' : '#ffffff';
+  const { colors } = useTheme();
+  const backgroundColor = colors.background;
   return (
     <Stack
       screenOptions={{

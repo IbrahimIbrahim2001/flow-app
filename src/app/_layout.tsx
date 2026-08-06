@@ -1,7 +1,7 @@
 import { useAuthStore } from '@/store/auth-store';
+import { useTheme } from '@/hooks/use-theme';
 import { SplashScreen, Stack } from 'expo-router';
 import { useEffect } from 'react';
-import { useColorScheme } from 'react-native';
 import { Uniwind } from 'uniwind';
 import '../global.css';
 
@@ -21,8 +21,8 @@ function SplashScreenController() {
 
 export default function RootLayout() {
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
-  const theme = useColorScheme();
-  const backgroundColor = theme === 'dark' ? '#0b0f17' : '#ffffff';
+  const { colors } = useTheme();
+  const backgroundColor = colors.background;
 
   useEffect(() => {
     Uniwind.setTheme('system'); // follows device light/dark

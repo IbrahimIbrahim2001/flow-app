@@ -1,11 +1,10 @@
 import { NativeTabs } from 'expo-router/unstable-native-tabs';
-import { useColorScheme } from 'react-native';
+import { useTheme } from '@/hooks/use-theme';
 
 export default function TabsLayout() {
-  const theme = useColorScheme();
-  const isDark = theme === 'dark';
-  const backgroundColor = isDark ? '#0b0f17' : '#ffffff';
-  const primary = isDark ? '#3b9eff' : '#208aef';
+  const { colors } = useTheme();
+  const backgroundColor = colors.background;
+  const primary = colors.primary;
 
   return (
     <NativeTabs
