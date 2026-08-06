@@ -34,7 +34,7 @@ export default function RootLayout() {
       <Stack>
         <Stack.Protected guard={isAuthenticated}>
           <Stack.Screen
-            name="(tabs)"
+            name="(drawer)"
             options={{
               headerShown: false,
               contentStyle: { backgroundColor },

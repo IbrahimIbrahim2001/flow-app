@@ -1,5 +1,5 @@
-import { NativeTabs } from 'expo-router/unstable-native-tabs';
 import { useTheme } from '@/hooks/use-theme';
+import { NativeTabs } from 'expo-router/unstable-native-tabs';
 
 export default function TabsLayout() {
   const { colors } = useTheme();
@@ -13,7 +13,7 @@ export default function TabsLayout() {
       iconColor={{ default: '#94a3b8', selected: primary }}
       indicatorColor="transparent"
     >
-      <NativeTabs.Trigger name="index">
+      <NativeTabs.Trigger name="tasks">
         <NativeTabs.Trigger.Label>Tasks</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Icon
           src={require('@/assets/icons/checkbox.png')}
