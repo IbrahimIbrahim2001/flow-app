@@ -35,7 +35,7 @@ export default function NameScreen() {
       const result = await register(data.name, email ?? '', password ?? '');
       if (result.success && result.data?.data) {
         signIn(result.data.data);
-        router.replace('/(tabs)');
+        router.replace('/(drawer)/(tabs)/tasks');
       } else {
         setError('name', { type: 'manual', message: result.message });
       }

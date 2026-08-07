@@ -1,5 +1,5 @@
-import { type ThemeColors, themeColors } from '@/theme/colors';
 import { useColorScheme } from 'react-native';
+import { type ThemeColors, themeColors } from '@/theme/colors';
 
 export type Theme = {
   isDark: boolean;

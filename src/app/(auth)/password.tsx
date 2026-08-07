@@ -42,7 +42,7 @@ export default function PasswordScreen() {
       const result = await login(email ?? '', data.password);
       if (result.success && result.data?.data) {
         signIn(result.data.data);
-        router.replace('/(tabs)');
+        router.replace('/(drawer)/(tabs)/tasks');
       } else if (result.error === USER_NOT_FOUND) {
         setData(data);
         router.push('/(auth)/name');
@@ -76,6 +76,7 @@ export default function PasswordScreen() {
                 <Input
                   placeholder="Password"
                   secureTextEntry={!showPassword}
+                  autoCapitalize="none"
                   value={value}
                   onBlur={onBlur}
                   onChangeText={onChange}

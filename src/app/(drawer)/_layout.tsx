@@ -1,6 +1,6 @@
-import { useTheme } from '@/hooks/use-theme';
 import { usePathname } from 'expo-router';
 import { Drawer } from 'expo-router/drawer';
+import { useTheme } from '@/hooks/use-theme';
 
 export default function DrawerLayout() {
   const { colors } = useTheme();
@@ -12,8 +12,12 @@ export default function DrawerLayout() {
       screenOptions={{
         headerShown: false,
         swipeEnabled: isTasks,
+        swipeEdgeWidth: 120,
         drawerStyle: { backgroundColor: colors.background },
-        drawerContentContainerStyle: { flex: 1, backgroundColor: colors.background },
+        drawerContentContainerStyle: {
+          flex: 1,
+          backgroundColor: colors.background,
+        },
         drawerActiveTintColor: colors.primary,
         drawerInactiveTintColor: colors.foregroundSecondary,
         drawerLabelStyle: { color: colors.foreground },
