@@ -8,6 +8,7 @@ export default function CalendarLayout() {
     <Stack
       screenOptions={{
         headerShown: true,
+        headerShadowVisible: false,
         title: 'Calendar',
         contentStyle: { backgroundColor },
         headerStyle: { backgroundColor },

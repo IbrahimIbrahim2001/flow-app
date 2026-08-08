@@ -1,6 +1,6 @@
 import { usePathname } from 'expo-router';
 import { Drawer } from 'expo-router/drawer';
-import { DrawerHeader } from '@/components/drawer-header';
+import { DrawerContent } from '@/components/drawer-content';
 import { useTheme } from '@/hooks/use-theme';
 export default function DrawerLayout() {
   const { colors } = useTheme();
@@ -12,8 +12,12 @@ export default function DrawerLayout() {
       screenOptions={{
         headerShown: false,
         swipeEnabled: isTasks,
-        swipeEdgeWidth: 120,
-        drawerStyle: { backgroundColor: colors.background },
+        swipeEdgeWidth: 300,
+        drawerType: 'front',
+        overlayColor: colors.overlay,
+        drawerStyle: {
+          backgroundColor: colors.background,
+        },
         drawerContentContainerStyle: {
           flex: 1,
           backgroundColor: colors.background,
@@ -25,9 +29,9 @@ export default function DrawerLayout() {
           borderRadius: 12,
         },
       }}
-      drawerContent={() => <DrawerHeader />}
+      drawerContent={(props) => <DrawerContent {...props} />}
     >
-      <Drawer.Screen name="(tabs)" options={{ title: 'Flow' }} />
+      <Drawer.Screen name="(tabs)" />
     </Drawer>
   );
 }

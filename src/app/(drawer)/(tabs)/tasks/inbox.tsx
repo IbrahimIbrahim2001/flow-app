@@ -1,10 +1,9 @@
 import { Text, View } from 'react-native';
 
-// Today tasks screen
-export default function TasksScreen() {
+export default function InboxScreen() {
   return (
     <View className="flex-1 bg-background">
-      <Text>TasksScreen</Text>
+      <Text>Inbox</Text>
     </View>
   );
 }

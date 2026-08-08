@@ -15,7 +15,7 @@ export default function TasksLayout() {
     <Stack
       screenOptions={{
         headerShown: true,
-        title: 'Today',
+        headerShadowVisible: false,
         contentStyle: { backgroundColor: colors.background },
         headerStyle: { backgroundColor: colors.background },
         headerTitleStyle: {
@@ -32,6 +32,10 @@ export default function TasksLayout() {
           </Pressable>
         ),
       }}
-    />
+    >
+      <Stack.Screen name="index" options={{ title: 'Today' }} />
+      <Stack.Screen name="inbox" options={{ title: 'Inbox' }} />
+      <Stack.Screen name="[tag]" />
+    </Stack>
   );
 }

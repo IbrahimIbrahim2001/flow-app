@@ -12,7 +12,6 @@ export function DrawerHeader() {
   return (
     <SafeAreaView
       style={{
-        flex: 1,
         backgroundColor: colors.background,
         justifyContent: 'flex-start',
       }}
@@ -21,18 +20,18 @@ export function DrawerHeader() {
         {image ? (
           <Image
             source={{ uri: image }}
-            style={{ width: 32, height: 32, borderRadius: 16 }}
+            style={{ width: 40, height: 40, borderRadius: 16 }}
           />
         ) : (
-          <Text className="rounded-full size-8 bg-primary text-primary-foreground text-center py-1 font-bold">
+          <Text className="rounded-full size-10 bg-primary text-primary-foreground text-center py-2 font-bold">
             {name.charAt(0).toUpperCase()}
           </Text>
         )}
         <Text
           numberOfLines={1}
-          className="flex-1 text-lg text-primary-foreground font-semibold truncate"
+          className="flex-1 text-lg text-primary-foreground font-semibold truncate capitalize"
         >
-          {name.repeat(3)}
+          {name}
         </Text>
         <View className="flex-row gap-x-2 ml-auto">
           {/* TODO: update the links */}
