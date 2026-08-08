@@ -42,7 +42,7 @@ export default function RootLayout() {
                 contentStyle: { backgroundColor },
                 headerStyle: { backgroundColor },
               }}
-            ></Stack.Screen>
+            />
           </Stack.Protected>
           <Stack.Protected guard={!isAuthenticated}>
             <Stack.Screen

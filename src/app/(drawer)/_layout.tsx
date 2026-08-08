@@ -1,7 +1,7 @@
 import { usePathname } from 'expo-router';
 import { Drawer } from 'expo-router/drawer';
+import { DrawerHeader } from '@/components/drawer-header';
 import { useTheme } from '@/hooks/use-theme';
-
 export default function DrawerLayout() {
   const { colors } = useTheme();
   const pathname = usePathname();
@@ -21,7 +21,11 @@ export default function DrawerLayout() {
         drawerActiveTintColor: colors.primary,
         drawerInactiveTintColor: colors.foregroundSecondary,
         drawerLabelStyle: { color: colors.foreground },
+        drawerItemStyle: {
+          borderRadius: 12,
+        },
       }}
+      drawerContent={() => <DrawerHeader />}
     >
       <Drawer.Screen name="(tabs)" options={{ title: 'Flow' }} />
     </Drawer>
